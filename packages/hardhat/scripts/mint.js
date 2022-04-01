@@ -12,26 +12,48 @@ const delayMS = 1000 //sometimes xDAI needs a 6000ms break lol 😅
 const main = async () => {
 
   // ADDRESS TO MINT TO:
-  const toAddress = "0x5d8b8b1EB5CdCC36E48Eccc987125bBd7002f167"
+  // const toAddress = "0x5d8b8b1EB5CdCC36E48Eccc987125bBd7002f167"
+  const toAddress = "0xcd15cefF2C47590DE91E3CbCDb85165EF29C4BbF"
 
   console.log("\n\n 🎫 Minting to "+toAddress+"...\n");
 
   const { deployer } = await getNamedAccounts();
   const yourCollectible = await ethers.getContract("YourCollectible", deployer);
 
+  // const buffalo = {
+  //   "description": "It's actually a bison?",
+  //   "external_url": "https://austingriffith.com/portfolio/paintings/",// <-- this can link to a page for the specific file too
+  //   "image": "https://austingriffith.com/images/paintings/buffalo.jpg",
+  //   "name": "Buffalo",
+  //   "attributes": [
+  //      {
+  //        "trait_type": "BackgroundColor",
+  //        "value": "green"
+  //      },
+  //      {
+  //        "trait_type": "Eyes",
+  //        "value": "googly"
+  //      },
+  //      {
+  //        "trait_type": "Stamina",
+  //        "value": 42
+  //      }
+  //   ]
+  // }
+  //{"description":"It is really djay!","external_url":"https://austingriffith.com/portfolio/paintings/","image":"https://cdn.discordapp.com/avatars/729928617144090696/e68f93286ca7015c6c073b63da3abbbb.webp?size=240","name":"Djay","attributes":[{"trait_type":"BackgroundColor","value":"green"},{"trait_type":"Eyes","value":"googly"}]}
   const buffalo = {
-    "description": "It's actually a bison?",
-    "external_url": "https://austingriffith.com/portfolio/paintings/",// <-- this can link to a page for the specific file too
-    "image": "https://austingriffith.com/images/paintings/buffalo.jpg",
-    "name": "Buffalo",
+    "description": "It's really djay!",
+    "external_url": "https://cdn.discordapp.com/avatars/729928617144090696/e68f93286ca7015c6c073b63da3abbbb.webp?size=240",// <-- this can link to a page for the specific file too
+    "image": "https://cdn.discordapp.com/avatars/729928617144090696/e68f93286ca7015c6c073b63da3abbbb.webp?size=240",
+    "name": "Godjayi Everydjay",
     "attributes": [
        {
          "trait_type": "BackgroundColor",
          "value": "green"
        },
        {
-         "trait_type": "Eyes",
-         "value": "googly"
+         "trait_type": "Form",
+         "value": "muscular"
        },
        {
          "trait_type": "Stamina",
@@ -44,7 +66,7 @@ const main = async () => {
 
   console.log("Minting buffalo with IPFS hash ("+uploaded.path+")")
   await yourCollectible.mintItem(toAddress,uploaded.path,{gasLimit:10000000})
-
+  return;
 
   await sleep(delayMS)
 
